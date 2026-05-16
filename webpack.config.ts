@@ -4,7 +4,7 @@ import HtmlWebpackPlugin from 'html-webpack-plugin';
 import path from 'path';
 import webpack from 'webpack';
 import { createWebpackConfig, defaultShared } from '@bka-stuff/pe-mfe-utils';
-import { fileURLToPath } from "url";
+import { fileURLToPath } from 'url';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -19,9 +19,12 @@ const config = {
     port: 3002,
   }),
 
-    plugins: [
+  plugins: [
     new HtmlWebpackPlugin({
       template: './public/index.html',
+    }),
+    new webpack.DefinePlugin({
+      'process.env': JSON.stringify(process.env),
     }),
     new webpack.container.ModuleFederationPlugin({
       name: APP_NAME,

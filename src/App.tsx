@@ -1,25 +1,33 @@
-import React, { InputEventHandler, useState } from "react";
-import { Routes, Route, useNavigate, useLocation } from "react-router-dom";
-import { useTracerStore } from "@bka-stuff/pe-mfe-utils";
-import "./index.css";
+import React, { InputEventHandler, useState } from 'react';
+import { Routes, Route, useNavigate, useLocation } from 'react-router-dom';
+import { useTracerStore, startTrace } from '@bka-stuff/pe-mfe-utils';
+import './index.css';
+import { axiosAuth } from './utils/axios';
 
 const App: React.FC = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  console.log("Remote App One render", location.pathname);
+  console.log('Remote App One render', location.pathname);
 
   function Home() {
-    console.log("rendering Home");
+    console.log('rendering Home');
     const navigate = useNavigate();
     const { addTraceId } = useTracerStore();
-    const [label, setLabel] = useState("");
+    const [label, setLabel] = useState('');
     const [id, setId] = useState(1234);
+
+    function doTheThing() {
+      const traceId = startTrace('rube trace');
+      axiosAuth.post('/rube', {}, { headers: { 'X-Trace-ID': traceId } });
+    }
 
     return (
       <div>
         <h1>Hey there!</h1>
-        <button onClick={() => navigate("feck")}>Feck!</button>
+        <button onClick={() => navigate('feck')}>Feck!</button>
         <br />
+
+        <button onClick={doTheThing}>Rube Goldberg strikes again!</button>
         <form
           onSubmit={(e) => {
             e.preventDefault();
@@ -28,16 +36,14 @@ const App: React.FC = () => {
               label: `I declare a thumb ${label}!`,
             });
             setId(id + 1);
-            setLabel("");
+            setLabel('');
           }}
         >
           <input
             type="text"
             className="tw:border tw:border-blue"
             value={label}
-            onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-              setLabel(e.target.value)
-            }
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) => setLabel(e.target.value)}
             autoFocus
           />
           <button hidden></button>
@@ -47,12 +53,12 @@ const App: React.FC = () => {
   }
 
   function Feck() {
-    console.log("rendering Feck");
+    console.log('rendering Feck');
     return <div>Hey there, Feck!</div>;
   }
 
   function NotFound() {
-    console.log("rendering NotFound");
+    console.log('rendering NotFound');
     return <div>Error, Will Robinson!</div>;
   }
 
