@@ -1,3 +1,4 @@
+import { startTrace } from '@bka-stuff/pe-mfe-utils';
 import { axiosPublic } from '../utils/axios';
 
 export type DemoRegisterResponse = {
@@ -8,6 +9,9 @@ export type DemoRegisterResponse = {
 };
 
 export async function registerDemo(): Promise<DemoRegisterResponse> {
-  const response = await axiosPublic.post<DemoRegisterResponse>('/demo/register');
+  const traceId = startTrace('register-demo');
+  const response = await axiosPublic.post<DemoRegisterResponse>('/demo/register', null, {
+    headers: { 'X-Trace-ID': traceId },
+  });
   return response.data;
 }
