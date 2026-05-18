@@ -6,11 +6,13 @@ const BASE_URL = process.env.AUTH_URL || 'http://localhost:8080';
 export const axiosPublic = axios.create({ baseURL: BASE_URL });
 export const axiosAuth = axios.create({ baseURL: BASE_URL });
 
-createAuthClient({
+export const authClient = createAuthClient({
   axiosPublic,
   axiosAuth,
   onLogout: () => {
     // whatever the shell should do
     console.log('Logged out');
   },
-}).attach();
+});
+
+authClient.attach();

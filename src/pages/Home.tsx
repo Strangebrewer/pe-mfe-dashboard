@@ -1,12 +1,19 @@
 import { FC } from 'react';
 import { startTrace, GhostButton } from '@bka-stuff/pe-mfe-utils';
 import { axiosAuth } from '../utils/axios';
+import { useRegisterDemo } from '../hooks/demoHooks';
 import './styles.css';
 
 const Home: FC = () => {
+  const { mutate: registerDemo } = useRegisterDemo();
+
   function doTheThing() {
     const traceId = startTrace('rube trace');
     axiosAuth.post('/rube', {}, { headers: { 'X-Trace-ID': traceId } });
+  }
+
+  function makeMyDay() {
+    registerDemo();
   }
 
   return (
@@ -22,9 +29,11 @@ const Home: FC = () => {
 
       <div className="tw:flex tw:justify-center tw:flex-wrap">
         <GhostButton text="Rube Goldberg strikes again!" color="blue" onClick={doTheThing} />
-        <p className="tw:mt-[12px]">
+        <p className="tw:mt-[12px] tw:mb-[36px]">
           Click the Rube Button and then click the info icon over there --&gt;
         </p>
+
+        <GhostButton text="Register for a Demo!" color="blue" onClick={makeMyDay} />
       </div>
     </div>
   );
