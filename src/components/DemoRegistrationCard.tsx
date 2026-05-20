@@ -156,9 +156,11 @@ function RubeSection({
   return (
     <div className="tw:border-t tw:border-purpleAlpha tw:pt-4 tw:flex tw:flex-col tw:gap-3">
       <p className="tw:text-sm tw:text-muted">
-        The sidebar shows traces by name - if you expand them, they'll show individual spans. The
-        rube-owid trace hops across the backend services and pulls a subject for Our World In Data
-        (OWID) and adds a task to the task manager. Check it out:
+        The right sidebar shows traces by name - if you expand them, they'll show individual spans.
+      </p>
+      <p className="tw:text-sm tw:text-muted">
+        The rube-owid trace hops across the backend services and pulls a subject for Our World In
+        Data (OWID) and adds a task to the task manager. Check it out:
       </p>
       <div>
         <Button

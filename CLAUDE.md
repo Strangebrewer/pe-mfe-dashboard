@@ -17,7 +17,7 @@ Single page, no sub-routes. Two sections:
 - Demo registration card — adapts based on auth state (see below)
 
 **Service grid (below fold, always visible):**
-- 9 cards in a 3-column grid: go-auth, go-job-search, go-budget, go-tracer, gql-home-maintenance, gql-recipes, gql-project-mgr, gql-router, Shell+MFEs
+- 10 cards in a 3-column grid: go-auth, go-job-search, go-budget, go-tracer, gql-home-maintenance, gql-recipes, gql-project-mgr, gql-router, Shell+MFEs, pe-mfe-utils
 - Each card: name, role badge (Backend/GraphQL/Frontend/Infrastructure), stack tags, description, GitHub link (always), "Open" link to MFE route (logged-in users only, domain MFEs only)
 - Static data defined in `src/components/ServiceGrid.tsx`
 
@@ -82,6 +82,16 @@ No `API_URL` or `GQL_URL` — all API calls go to go-auth directly.
 - `registerDemo()` returns `{ data: DemoRegisterResponse, traceId: string }` — the traceId is needed to watch for trace completion
 - GitHub URLs in `ServiceGrid.tsx` follow the `Strangebrewer` pattern from Go module paths — verify before deploying
 - `isReturningDemo` is derived: `!!user && !registrationResult` — no `isDemo` field on the store `User` type; credential recovery falls back gracefully if localStorage has no matching entry
+
+---
+
+## Deferred: MFE landing page blurbs
+
+Each MFE landing page (`/`) should show a short description of the service and how to use it — visible only to demo users. Goal: a recruiter poking around gets immediate context without having to reverse-engineer the UI.
+
+**Dependency**: `isDemo` is a JWT claim but not currently on the `User` type in `useUserStore`. Would need to be added to `GET /users/me` response in go-auth and propagated to the store. Once that's in place, each MFE's landing page checks `user?.isDemo` and renders the blurb conditionally.
+
+Touches 5 MFE repos (job-search, budget, home-maintenance, recipes, project-mgr) plus go-auth and pe-mfe-utils (store type).
 
 ## Tailwind
 Uses `tw:` prefix (`tw:flex`, `tw:text-sm`, etc.) — required by the MFE Tailwind config.

@@ -22,7 +22,7 @@ const HeroSection: FC = () => (
     </p>
     <p className="tw:text-lg tw:text-primary tw:mb-6 tw:leading-relaxed">
       Register for a demo account below and explore the live system. Some actions will fire a system
-      trace which can be found in the sidebar over there --&gt;.
+      trace, which can be found in the sidebar over there --&gt;
     </p>
     <h2 className="tw:mb-[6px] tw:text-xl">Stack</h2>
     <div className="tw:flex tw:flex-wrap tw:gap-2">
