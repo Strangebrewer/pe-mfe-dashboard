@@ -76,7 +76,7 @@ const Dashboard: FC = () => {
   }
 
   return (
-    <div className="tw:px-6 tw:py-10 tw:max-w-5xl tw:mx-auto">
+    <div className="tw:max-w-3xl tw:px-6 tw:py-10 tw:mx-auto">
       <HeroSection />
       <DemoRegistrationCard
         onRegister={handleRegister}

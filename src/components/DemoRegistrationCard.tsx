@@ -128,7 +128,7 @@ const DemoRegistrationCard: FC<Props> = ({
   }
 
   return (
-    <div className="tw:flex tw:flex-col tw:gap-3">
+    <div className="tw:flex tw:w-[200px] tw:m-auto tw:flex-col tw:justify-center tw:gap-3">
       <Button
         color="blue"
         text={isRegistering ? 'Registering...' : 'Register for a Demo'}
@@ -158,9 +158,19 @@ function RubeSection({
       <p className="tw:text-sm tw:text-muted">
         The right sidebar shows traces by name - if you expand them, they'll show individual spans.
       </p>
+      <p className="tw:text-sm tw:text-muted">The left sidebar links to all the micro-frontends.</p>
       <p className="tw:text-sm tw:text-muted">
-        The rube-owid trace hops across the backend services and pulls a subject for Our World In
-        Data (OWID) and adds a task to the task manager. Check it out:
+        The rube-owid trace hops across the backend services and pulls a random subject from Our
+        World In Data (
+        <a
+          className="tw:underline tw:text-[#ffffff]"
+          href="https://ourworldindata.org/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          ourworldindata.org
+        </a>
+        ) and adds a task to the task manager. Check it out:
       </p>
       <div>
         <Button

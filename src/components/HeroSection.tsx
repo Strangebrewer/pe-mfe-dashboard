@@ -13,12 +13,12 @@ const stackTags = [
 ];
 
 const HeroSection: FC = () => (
-  <div className="tw:max-w-3xl tw:mb-12">
+  <div className="tw:m-auto tw:mb-12">
     <h1 className="tw:text-4xl tw:font-bold tw:text-primary tw:mb-4">personal-enterprise</h1>
     <p className="tw:text-lg tw:text-muted tw:mb-2 tw:leading-relaxed">
-      A personal distributed system built from scratch — Go microservices, NestJS GraphQL subgraphs,
-      Apollo Federation, event-driven Pub/Sub, React microfrontends via Webpack Module Federation,
-      deployed on GCP. Serves both as a demo for you and a learning and testing playground for me.
+      A personal distributed system: a demo for you, a learning and testing playground for me. Go
+      microservices, NestJS GraphQL subgraphs, Apollo Federation, event-driven Pub/Sub, React
+      microfrontends via Webpack Module Federation, deployed on GCP and Firebase.
     </p>
     <p className="tw:text-lg tw:text-primary tw:mb-6 tw:leading-relaxed">
       Register for a demo account below and explore the live system. Some actions will fire a system
