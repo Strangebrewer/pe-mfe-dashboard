@@ -17,7 +17,7 @@ Single page, no sub-routes. Two sections:
 - Demo registration card — adapts based on auth state (see below)
 
 **Service grid (below fold, always visible):**
-- 10 cards in a 3-column grid: go-auth, go-job-search, go-budget, go-tracer, gql-home-maintenance, gql-recipes, gql-project-mgr, gql-router, Shell+MFEs, pe-mfe-utils
+- 15 cards in a 3-column grid: go-auth, go-job-search, go-budget, go-tracer, gql-home-maintenance, gql-recipes, gql-project-mgr, gql-router, pe-mfe-utils, pe-mfe-shell, pe-mfe-job-search, pe-mfe-budget, pe-mfe-home-maintenance, pe-mfe-recipes, pe-mfe-project-mgr
 - Each card: name, role badge (Backend/GraphQL/Frontend/Infrastructure), stack tags, description, GitHub link (always), "Open" link to MFE route (logged-in users only, domain MFEs only)
 - Static data defined in `src/components/ServiceGrid.tsx`
 
@@ -37,6 +37,9 @@ Single page, no sub-routes. Two sections:
 - "You're logged in as a demo user"
 - "Show credentials" button → reads `demo_credentials` from `localStorage`, checks `userId` matches current user
 - Rube Goldberg button always visible
+
+**Logged-in non-demo user (real account):**
+- Rube Goldberg button shown directly (no credentials section, no trace gate)
 
 ---
 
@@ -81,7 +84,7 @@ No `API_URL` or `GQL_URL` — all API calls go to go-auth directly.
 - `Button` from pe-mfe-utils takes a `text` prop, not `children`
 - `registerDemo()` returns `{ data: DemoRegisterResponse, traceId: string }` — the traceId is needed to watch for trace completion
 - GitHub URLs in `ServiceGrid.tsx` follow the `Strangebrewer` pattern from Go module paths — verify before deploying
-- `isReturningDemo` is derived: `!!user && !registrationResult` — no `isDemo` field on the store `User` type; credential recovery falls back gracefully if localStorage has no matching entry
+- `isReturningDemo` is derived: `!!user?.isDemo && !registrationResult`. `isDemo` is on the store `User` type (sourced from `GET /users/me`). Credential recovery falls back gracefully if localStorage has no matching entry.
 
 ---
 

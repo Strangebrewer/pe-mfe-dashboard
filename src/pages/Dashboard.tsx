@@ -35,7 +35,7 @@ const Dashboard: FC = () => {
   }, [traces]);
 
   // Returning demo user: show Rube button immediately (they've already seen the trace intro)
-  const isReturningDemo = !!user && !registrationResult;
+  const isReturningDemo = !!user?.isDemo && !registrationResult;
 
   async function handleRegister() {
     setIsRegistering(true);
@@ -76,19 +76,22 @@ const Dashboard: FC = () => {
   }
 
   return (
-    <div className="tw:max-w-3xl tw:px-6 tw:py-10 tw:mx-auto">
-      <HeroSection />
-      <DemoRegistrationCard
-        onRegister={handleRegister}
-        isRegistering={isRegistering}
-        registerError={registerError}
-        registrationResult={registrationResult}
-        isReturningDemo={isReturningDemo}
-        showRubeButton={isReturningDemo || showRubeButton}
-        onRube={handleRube}
-        isRubing={isRubing}
-        rubeResult={rubeResult}
-      />
+    <div className="tw:px-6 tw:py-10">
+      <div className="tw:max-w-3xl tw:mx-auto">
+        <HeroSection isLoggedIn={!!user} />
+        <DemoRegistrationCard
+          onRegister={handleRegister}
+          isRegistering={isRegistering}
+          registerError={registerError}
+          registrationResult={registrationResult}
+          isReturningDemo={isReturningDemo}
+          isLoggedIn={!!user}
+          showRubeButton={isReturningDemo || showRubeButton}
+          onRube={handleRube}
+          isRubing={isRubing}
+          rubeResult={rubeResult}
+        />
+      </div>
       <ServiceGrid isLoggedIn={!!user} />
     </div>
   );

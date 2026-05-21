@@ -8,6 +8,7 @@ type Props = {
   registerError: string | null;
   registrationResult: DemoRegisterResponse | null;
   isReturningDemo: boolean;
+  isLoggedIn: boolean;
   showRubeButton: boolean;
   onRube: () => Promise<void>;
   isRubing: boolean;
@@ -82,17 +83,26 @@ const DemoRegistrationCard: FC<Props> = ({
   registerError,
   registrationResult,
   isReturningDemo,
+  isLoggedIn,
   showRubeButton,
   onRube,
   isRubing,
   rubeResult,
 }) => {
+  if (isLoggedIn && !isReturningDemo && !registrationResult) {
+    return (
+      <Card>
+        <RubeSection show={true} border={false} onRube={onRube} isRubing={isRubing} rubeResult={rubeResult} />
+      </Card>
+    );
+  }
+
   if (isReturningDemo && !registrationResult) {
     return (
       <Card>
         <p className="tw:text-sm tw:text-muted tw:mb-1">You're logged in as a demo user.</p>
         <StoredCredentials />
-        <RubeSection show={true} onRube={onRube} isRubing={isRubing} rubeResult={rubeResult} />
+        <RubeSection show={true} border={false} onRube={onRube} isRubing={isRubing} rubeResult={rubeResult} />
       </Card>
     );
   }
@@ -142,11 +152,13 @@ const DemoRegistrationCard: FC<Props> = ({
 
 function RubeSection({
   show,
+  border = true,
   onRube,
   isRubing,
   rubeResult,
 }: {
   show: boolean;
+  border?: boolean;
   onRube: () => Promise<void>;
   isRubing: boolean;
   rubeResult: RubeResponse | null;
@@ -154,7 +166,7 @@ function RubeSection({
   if (!show) return null;
 
   return (
-    <div className="tw:border-t tw:border-purpleAlpha tw:pt-4 tw:flex tw:flex-col tw:gap-3">
+    <div className={`${border ? 'tw:border-t tw:border-purpleAlpha tw:pt-4 ' : ''}tw:flex tw:flex-col tw:gap-3`}>
       <p className="tw:text-sm tw:text-muted">
         The right sidebar shows traces by name - if you expand them, they'll show individual spans.
       </p>

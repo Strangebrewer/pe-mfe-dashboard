@@ -1,4 +1,4 @@
-import { Button, Card, GhostButton } from '@bka-stuff/pe-mfe-utils';
+import { Button, Card } from '@bka-stuff/pe-mfe-utils';
 import { FC } from 'react';
 import { useNavigate } from 'react-router-dom';
 
@@ -32,23 +32,25 @@ const ServiceCard: FC<Props> = ({ service, isLoggedIn }) => {
 
   return (
     <Card>
-      <div className="tw:flex tw:items-start tw:justify-between tw:gap-2">
-        <span className="tw:font-semibold tw:text-primary tw:text-sm">{service.name}</span>
-        <span
-          className={`tw:text-xs tw:px-2 tw:py-0.5 tw:rounded tw:border tw:shrink-0 ${roleBadgeClass[service.role]}`}
-        >
-          {service.role}
-        </span>
-      </div>
+      <div className="tw:flex tw:flex-col tw:h-full">
+        <div className="tw:flex tw:items-start tw:justify-between tw:gap-2">
+          <span className="tw:font-semibold tw:text-primary tw:text-sm">{service.name}</span>
+          <span
+            className={`tw:text-xs tw:px-2 tw:py-0.5 tw:rounded tw:border tw:shrink-0 ${roleBadgeClass[service.role]}`}
+          >
+            {service.role}
+          </span>
+        </div>
 
-      <p className="tw:text-xs tw:text-grey tw:font-mono">{service.stack}</p>
-      <p className="tw:text-sm tw:text-muted tw:leading-snug">{service.description}</p>
+        <p className="tw:text-[11px] tw:text-grey tw:font-mono tw:pt-1">{service.stack}</p>
+        <p className="tw:text-sm tw:text-muted tw:pt-1">{service.description}</p>
 
-      <div className="tw:flex tw:mt-auto tw:pt-2 tw:flex-wrap">
-        <Button color="blue" onClick={goToRepo} text="GitHub Repo" />
-        {service.mfeRoute && isLoggedIn && (
-          <Button last text="Open" color="green" onClick={() => navigate(service.mfeRoute!)} />
-        )}
+        <div className="tw:flex tw:justify-center tw:mt-auto tw:pt-4 tw:flex-wrap">
+          <Button color="blue" onClick={goToRepo} text="GitHub Repo" />
+          {service.mfeRoute && isLoggedIn && (
+            <Button last text="Open" color="green" onClick={() => navigate(service.mfeRoute!)} />
+          )}
+        </div>
       </div>
     </Card>
   );
