@@ -4,24 +4,27 @@ import HtmlWebpackPlugin from 'html-webpack-plugin';
 import path from 'path';
 import webpack from 'webpack';
 import { createWebpackConfig, defaultShared } from '@bka-stuff/pe-mfe-utils';
-import { fileURLToPath } from "url";
+import { fileURLToPath } from 'url';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-const APP_NAME = 'mfe_app_one';
+const APP_NAME = 'pe_mfe_dashboard';
 
 const config = {
   ...createWebpackConfig({
     appName: APP_NAME,
     resolve: path.resolve,
     _dirname: __dirname,
-    port: 3001,
+    port: 3002,
   }),
 
-    plugins: [
+  plugins: [
     new HtmlWebpackPlugin({
       template: './public/index.html',
+    }),
+    new webpack.DefinePlugin({
+      'process.env': JSON.stringify(process.env),
     }),
     new webpack.container.ModuleFederationPlugin({
       name: APP_NAME,

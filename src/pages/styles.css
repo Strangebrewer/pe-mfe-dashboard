@@ -1,0 +1,8 @@
+.home-under-construction {
+  background-image: url('../assets/under-construction.gif');
+  background-size: contain;
+  background-repeat: no-repeat;
+  width: 400px;
+  height: 125px;
+  margin: 0 auto 48px;
+}
