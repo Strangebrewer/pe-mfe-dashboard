@@ -92,7 +92,13 @@ const DemoRegistrationCard: FC<Props> = ({
   if (isLoggedIn && !isReturningDemo && !registrationResult) {
     return (
       <Card>
-        <RubeSection show={true} border={false} onRube={onRube} isRubing={isRubing} rubeResult={rubeResult} />
+        <RubeSection
+          show={true}
+          border={false}
+          onRube={onRube}
+          isRubing={isRubing}
+          rubeResult={rubeResult}
+        />
       </Card>
     );
   }
@@ -102,7 +108,13 @@ const DemoRegistrationCard: FC<Props> = ({
       <Card>
         <p className="tw:text-sm tw:text-muted tw:mb-1">You're logged in as a demo user.</p>
         <StoredCredentials />
-        <RubeSection show={true} border={false} onRube={onRube} isRubing={isRubing} rubeResult={rubeResult} />
+        <RubeSection
+          show={true}
+          border={false}
+          onRube={onRube}
+          isRubing={isRubing}
+          rubeResult={rubeResult}
+        />
       </Card>
     );
   }
@@ -166,9 +178,13 @@ function RubeSection({
   if (!show) return null;
 
   return (
-    <div className={`${border ? 'tw:border-t tw:border-purpleAlpha tw:pt-4 ' : ''}tw:flex tw:flex-col tw:gap-3`}>
+    <div
+      className={`${border ? 'tw:border-t tw:border-purpleAlpha tw:pt-4 ' : ''}tw:flex tw:flex-col tw:gap-3`}
+    >
       <p className="tw:text-sm tw:text-muted">
         The right sidebar shows traces by name - if you expand them, they'll show individual spans.
+        Currently, only registration, changing a job status to 'interviewing', and the rube thing
+        below are traced. More may be added later.
       </p>
       <p className="tw:text-sm tw:text-muted">The left sidebar links to all the micro-frontends.</p>
       <p className="tw:text-sm tw:text-muted">

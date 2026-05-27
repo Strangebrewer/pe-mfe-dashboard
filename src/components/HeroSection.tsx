@@ -17,9 +17,11 @@ const HeroSection: FC<{ isLoggedIn: boolean }> = ({ isLoggedIn }) => (
     <h1 className="tw:text-4xl tw:font-bold tw:text-primary tw:mb-4">Personal Enterprise Lab</h1>
     <p className="tw:text-lg tw:text-muted tw:mb-2 tw:leading-relaxed">
       A personal enterprise-style distributed system: a demo for you, a learning and testing
-      playground for me. Built with Go microservices, NestJS GraphQL subgraphs, Apollo Federation,
-      event-driven Pubsub, React microfrontends via Webpack Module Federation, and deployed on GCP
-      and Firebase.
+      playground for me. The apps themselves — job tracking, budgeting, home maintenance — are
+      essentially toys, nothing you couldn't find done better elsewhere. The point is the
+      distributed system underneath: Go microservices, NestJS GraphQL subgraphs, Apollo Federation,
+      event-driven Pub/Sub, React microfrontends via Webpack Module Federation, deployed on GCP and
+      Firebase.
     </p>
     {!isLoggedIn ? (
       <p className="tw:text-lg tw:text-primary tw:mb-6 tw:leading-relaxed">
