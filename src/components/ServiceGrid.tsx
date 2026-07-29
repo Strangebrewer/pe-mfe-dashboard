@@ -67,7 +67,7 @@ const services: ServiceDef[] = [
   {
     name: 'gql-router',
     role: 'Infrastructure',
-    stack: 'Apollo Router (Rust) · Cloud Run',
+    stack: 'Apollo Router · Cloud Run',
     description:
       'Composes the supergraph from the NestJS subgraphs. Schema baked at build time via Rover; subgraph URLs overridden at runtime.',
     githubUrl: `${GITHUB_BASE}/gql-router`,
